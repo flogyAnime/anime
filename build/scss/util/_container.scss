@@ -1,0 +1,44 @@
+// @media (max-width: 390px) {
+//   .container {
+//     width: 95%;
+//     margin: auto;
+//   }
+// }
+
+@media (max-width: 390px) {
+  .container {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 98%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 98%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+    margin: auto;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}

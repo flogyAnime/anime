@@ -1,0 +1,7 @@
+__pycache__/
+build/gulp/node_modules/
+virtualenv/
+old-db/
+for me/
+settings.py
+a.md

@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="{{description}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- css files -->
+    {% for style in css %}
+      <link rel="stylesheet" href="/static/css/{{style}}?{% now 'U' %}" />
+    {% endfor %}
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>Hi {{profile.username}}</h1>
+  <p>====================== [ animes ]</p>
+  <h3>len_local_db_anime: {{len_local_db_an}}</h3>
+  <h3>old_animes: {{old_animes|length}}</h3>
+  <h3>new_animes: {{new_animes}}</h3>
+  <p>====================== [ episode ]</p>
+  <h3>len_local_db_episode: {{len_local_db_ep}}</h3>
+  <h3>old_episodes: {{old_episodes|length}}</h3>
+  <h3>new_episodes: {{new_episodes}}</h3>
+
+
+  <!-- js files -->
+  {% for file in js %}
+    <script src="/static/js/{{file}}?{% now 'U' %}"></script>
+  {% endfor %}
+</body>
+</html>

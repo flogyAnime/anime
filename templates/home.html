@@ -1,0 +1,125 @@
+{% extends 'base/main.html' %} {% load static %} {% block content %}
+
+<div class="content">
+  <!-- last episoe added -->
+  <span>اخر الحقات المضافة</span>
+  <div class="row">
+    {% for ep in new_upisode %} {% url 'episode_app:episode' ep.slug as url %}
+    {% url 'episode_app:episode' ep.slug as url %}
+    <a href="{{url}}" class="anime js-cut" title="{{ep.anime.title}}">
+      <div class="anime-logo">
+        <img src="{{ep.anime.image}}" alt="" />
+        <div class="episode"><span>الحلقلة {{ep.number}}</span></div>
+      </div>
+      <div class="star">
+        {% if ep.anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if ep.anime.rating|length == 1 %}
+          <span>{{ep.anime.rating}}.0</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if ep.anime.rating|length > 1 and ep.anime.rating != '' %}
+          <span>{{ep.anime.rating}}</span><i class="fas fa-star"></i>
+        {% endif %}
+      </div>
+      <div class="reset"></div>
+      <div class="simple-info">
+        <span class="title tc-js" title="{{ep.anime.title}}">{{ep.anime.title}}</span
+        ><span class="type">{{ep.anime.Type}}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <!-- recommended animes -->
+  <span class="secend">انميات مقترحة</span>
+  <div class="row">
+    {% for anime in recommended_animes.anime.all %}
+    {% url 'anime_info_app:anime_info' anime.slug as url %}
+    <a href="{{url}}" class="anime js-cut" title="{{anime.title}}">
+      <div class="anime-logo">
+        <img src="{{anime.image}}" alt="" />
+        <div class="episode"><span></span></div>
+      </div>
+      <div class="star">
+        {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length == 1 %}
+          <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+        {% endif %}
+      </div>
+      <div class="reset"></div>
+      <div class="simple-info">
+        <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+        ><span class="type">{{anime.Type}}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+    <!-- best animes -->
+  <span class="secend">افضل انميات</span>
+  <div class="row">
+    {% for anime in best %}
+    {% url 'anime_info_app:anime_info' anime.slug as url %}
+    <a href="{{url}}" class="anime js-cut" title="{{anime.title}}">
+      <div class="anime-logo">
+        <img src="{{anime.image}}" alt="" />
+        <div class="episode"><span></span></div>
+      </div>
+      <div class="star">
+        {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length == 1 %}
+          <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+        {% endif %}
+      </div>
+      <div class="reset"></div>
+      <div class="simple-info">
+        <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+        ><span class="type">{{anime.Type}}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <!-- best season animes -->
+  <span class="secend">افضل انميات الموسم</span>
+  <div class="row">
+    {% for anime in this_season %}
+    {% url 'anime_info_app:anime_info' anime.slug as url %}
+    <a href="{{url}}" class="anime js-cut" title="{{anime.title}}">
+      <div class="anime-logo">
+        <img src="{{anime.image}}" alt="" />
+        <div class="episode"><span></span></div>
+      </div>
+      <div class="star">
+        {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length == 1 %}
+          <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+        {% endif %}
+      </div>
+      <div class="reset"></div>
+      <div class="simple-info">
+        <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+        ><span class="type">{{anime.Type}}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

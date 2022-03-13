@@ -1,0 +1,330 @@
+@import "./util/main";
+@import "./util/animeBox";
+@import "./util/container";
+@import "./util/nav";
+@import "./util/register";
+@import "./util/left_slid";
+@import "./util/content";
+
+//! .anime-info
+.container.full {
+  margin-top: 15px;
+}
+.lg-view {
+  position: relative;
+  background: #f0f8ff08;
+  display: flex;
+  padding: 10px;
+  padding-left: 2px;
+  .menu-setting-ab {
+    width: 99%;
+    top: 43px;
+    right: 0.5%;
+    display: flex;
+    flex-direction: column;
+    background: #2a2c31;
+    position: absolute;
+    border-radius: 3px;
+    z-index: 4;
+    span {
+      font-weight: 700;
+      cursor: pointer;
+      padding: 8px 0;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 3px;
+      text-decoration: none;
+      margin-bottom: 2px;
+      &:hover {
+        @include simple-hover;
+      }
+    }
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    img {
+      max-height: 180px;
+      border-radius: 3px;
+    }
+    a {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 6px;
+      background: #f44336;
+      font-size: 15px;
+      color: white;
+      width: 100%;
+      text-align: center;
+      border-radius: 2px;
+      padding: 3px 0px;
+      margin-bottom: 5px;
+    }
+    > span {
+      margin-top: 6px;
+      margin-bottom: 0px;
+      text-decoration: none;
+      display: inline-block;
+      background: #08c;
+      font-size: 15px;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      border-radius: 2px;
+      padding: 3px 0;
+    }
+  }
+  .left {
+    margin-right: 20px;
+    .title {
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .categorys {
+      margin-bottom: 10px;
+      a {
+        color: #fff;
+        padding: 6px 13px;
+        margin: 2px;
+        background: #faa300;
+        border-radius: 3px;
+        display: inline-block;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    .story {
+      color: white;
+      display: inline-block;
+      max-height: 100px;
+      overflow: hidden;
+      line-height: 25px;
+      font-size: 15px;
+      max-width: 95%;
+    }
+    .prop {
+      color: white;
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: auto auto;
+      span {
+        margin-bottom: 5px;
+      }
+      .milt {
+        margin-bottom: 5px;
+        .type,
+        .statu,
+        .sesion {
+          color: #faa300;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.md-view {
+  display: none;
+  position: relative;
+  .menu-setting-ab {
+    width: 99%;
+    top: 55px;
+    left: 0.5%;
+    display: flex;
+    flex-direction: column;
+    background: #2a2c31;
+    position: absolute;
+    border-radius: 3px;
+    z-index: 4;
+    margin-bottom: 2px;
+    span {
+      font-weight: 700;
+      cursor: pointer;
+      padding: 8px 0;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 3px;
+      text-decoration: none;
+      &:hover {
+        @include simple-hover;
+      }
+    }
+  }
+  .top {
+    display: flex;
+    flex-direction: row-reverse;
+    background: #f0f8ff08;
+    padding-top: 11px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    .right {
+      width: 130px;
+      position: relative;
+      img {
+        width: 130px;
+        border-radius: 3px;
+      }
+      > span {
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 3px;
+        background: #08c;
+        font-size: 15px;
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        border-radius: 3px;
+        padding: 3px 0;
+        margin-bottom: 3px;
+      }
+    }
+    .left {
+      margin-left: 15px;
+      .title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 19px;
+        margin-bottom: 20px;
+        display: inline-block;
+        direction: initial;
+        padding-right: 2px;
+      }
+      .prop {
+        display: flex;
+        flex-direction: column;
+        color: #faa300;
+        span {
+          margin-bottom: 15px;
+          direction: ltr;
+        }
+      }
+    }
+  }
+  .center {
+    margin-top: 10px;
+    background: #f0f8ff08;
+    .story {
+      color: #fff;
+      display: inline-block;
+      overflow: hidden;
+      max-height: 109px;
+      line-height: 25px;
+      font-size: 15px;
+      padding-top: 5px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+  .bottom {
+    background: #f0f8ff08;
+    margin-top: 10px;
+    padding: 5px;
+    a {
+      color: #fff;
+      padding: 5px 14px;
+      margin: 5px;
+      background: #faa300;
+      border-radius: 3px;
+      display: inline-block;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+.episodes {
+  background: #f0f8ff08;
+  margin-top: 10px;
+  padding: 8px 0;
+  .searsh {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    background: #292d33;
+    padding: 5px;
+
+    span {
+      color: white;
+      margin-right: 10px;
+    }
+    input {
+      background: #1d2228;
+      color: white;
+      text-align: center;
+      border: none;
+      padding: 5px 0;
+      outline: none;
+      border-radius: 3px;
+    }
+  }
+  .all {
+    .cont {
+      padding: 6px 14px;
+      margin: 4px;
+      background: #faa300;
+      border-radius: 3px;
+      width: calc(50% - 10px);
+      display: inline-block;
+      .watch {
+        text-decoration: none;
+        color: #fff;
+        width: calc(100% - 40px);
+        direction: ltr;
+      }
+      .commets i {
+        width: 40px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .ep {
+        font-size: 15px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}
+.content {
+  background: none;
+}
+
+@media (max-width: 500px) {
+  .lg-view {
+    display: none;
+  }
+  .md-view {
+    display: block;
+  }
+  .content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,200 @@
+{% extends 'base/main.html' %} {% load static %} {% block content %}
+
+<div class="content">
+  <span>صفحتى الشخصية</span>
+  <div class="row">
+    <div class="main">
+      <div class="back">
+        <form method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="logout" value='active'>
+          <input type="submit" value="تسجيل الخروج">
+        </form>
+      </div>
+      <div class="logo">
+        {% if profile.use_profile_picture %}
+          {% if profile.profile_picture %}
+            <img src="{{profile.profile_picture.url}}" alt="">
+            {% else %}
+              <img
+                src="{% static 'images/default_user_profile_picture.jpg' %}"
+                alt=""
+              />
+          {% endif %}
+          {% else %}
+            <img
+              src="{% static 'images/default_user_profile_picture.jpg' %}"
+              alt=""
+            />
+        {% endif %}
+        <!-- <i class="fas fa-edit"></i> -->
+        
+        <div class="box hide">
+          <div class="cont">
+            <span class="changeImg">تغير الصورة الشخصية</span>
+            {% if profile.use_profile_picture %}
+              {% if profile.profile_picture %}
+                <span class="deletImg" statu="turn-on" >حدف الصورة الشخصية</span>
+                {% else %}
+                  <span class="deletImg" statu="turn-of" onclick=photo_not_found_to_delete()>حدف الصورة الشخصية</span>
+              {% endif %}
+              {% else %}
+                <span class="deletImg" statu="turn-of" onclick=photo_not_found_to_delete()>حدف الصورة الشخصية</span>
+            {% endif %}
+            <span class="back_">رجوع</span>
+
+            <form method="post" name="form" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="file" name="change_profile_picture" accept="image/*">
+              <input type="text" name="delet_profile_picture">
+              <input type="submit" class="save_profile_picture">
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+      <span class="user">{{username}}</span>
+      <span class="rase">متابع انمي</span>
+    </div>
+  </div>
+
+  <span class="secend prof" id="favorite" >المفضلة</span>
+  <div class="row">
+    <!-- anime-->
+    {% if favorite.all|length != 0  %}
+      {% for anime in favorite.all %}
+      {% url 'anime_info_app:anime_info' anime.slug as url %}
+      <a href="{{url}}" class="anime" title="{{anime.title}}">
+        <div class="anime-logo">
+          <img src="{{anime.image}}" alt="logo" />
+        </div>
+        <div class="star">
+          {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length == 1 %}
+            <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+          {% endif %}
+        </div>
+        <div class="reset"></div>
+        <div class="simple-info">
+          <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+          ><span class="type">{{anime.Type}}</span>
+        </div>
+      </a>
+      <!-- anime-->
+      {% endfor %}
+    {% else %}
+        <span class="box-null">القائمة فارغة</span>
+    {% endif %}
+
+  </div>
+
+  <span class="secend" id="watch-now">اشاهدها حاليا</span>
+  <div class="row">
+    <!-- anime-->
+    {% if watchNow.all|length != 0 %}
+      {% for anime in watchNow.all %}
+      {% url 'anime_info_app:anime_info' anime.slug as url %}
+      <a href="{{url}}" class="anime" title="{{anime.title}}">
+        <div class="anime-logo">
+          <img src="{{anime.image}}" alt="logo" />
+        </div>
+        <div class="star">
+          {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length == 1 %}
+            <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+          {% endif %}
+        </div>
+        <div class="reset"></div>
+        <div class="simple-info">
+          <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+          ><span class="type">{{anime.Type}}</span>
+        </div>
+      </a>
+      <!-- anime-->
+      {% endfor %}
+    {% else %}
+        <span class="box-null">القائمة فارغة</span>
+    {% endif %}
+  </div>
+
+  <span class="secend" id="want-watch">ارغب بمشاهدتها</span>
+  <div class="row">
+    <!-- anime-->
+    {% if wantWatch.all|length != 0 %}
+      {% for anime in wantWatch.all %}
+      {% url 'anime_info_app:anime_info' anime.slug as url %}
+      <a href="{{url}}" class="anime" title="{{anime.title}}">
+        <div class="anime-logo">
+          <img src="{{anime.image}}" alt="logo" />
+        </div>
+        <div class="star">
+          {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length == 1 %}
+            <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+          {% endif %}
+        </div>
+        <div class="reset"></div>
+        <div class="simple-info">
+          <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+          ><span class="type">{{anime.Type}}</span>
+        </div>
+      </a>
+      <!-- anime-->
+      {% endfor %}
+    {% else %}
+        <span class="box-null">القائمة فارغة</span>
+    {% endif %}
+  </div>
+
+  <span class="secend" id="watched">تمت مشاهدتها</span>
+  <div class="row">
+    <!-- anime-->
+    {% if watched.all|length != 0 %}
+      {% for anime in watched.all %}
+      {% url 'anime_info_app:anime_info' anime.slug as url %}
+      <a href="{{url}}" class="anime" title="{{anime.title}}">
+        <div class="anime-logo">
+          <img src="{{anime.image}}" alt="logo" />
+        </div>
+        <div class="star">
+          {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length == 1 %}
+            <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+          {% endif %}
+          {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+          {% endif %}
+        </div>
+        <div class="reset"></div>
+        <div class="simple-info">
+          <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+          ><span class="type">{{anime.Type}}</span>
+        </div>
+      </a>
+      <!-- anime-->
+      {% endfor %}
+    {% else %}
+        <span class="box-null">القائمة فارغة</span>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

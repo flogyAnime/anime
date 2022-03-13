@@ -1,0 +1,139 @@
+{% extends 'base/main.html' %} {% load static %} {% block content %}
+
+<div class="content">
+  <!-- comments -->
+  <div class="comments">
+
+    {% for comment in Comments_pin %}
+      <div class="box">
+        <div class="top">
+          <div class="cont">
+            <div class="head">
+              <div class="profile">
+                <img src="{{comment.user.profile_picture.url}}" alt="" />
+                <div class="cont">
+                  <div class="full-username">
+                    <span class="username">{{comment.user.username}}</span>
+                    <span class="tag">{{comment.user.tag}}</span>
+                  </div>
+                  <span class="dat-add">{{comment.added_date}}</span>
+                </div>
+              </div>
+              <div class="body">
+                <div class="cont">{{comment.comment}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="left">
+
+            {% if profile in comment.like.all %}
+              <i class="fas fa-thumbs-up like like-active"></i>
+              {% else %}
+                <i class="fas fa-thumbs-up like"></i>
+            {% endif %}
+            <span>({{comment.like.all|length}})</span>
+            
+            {% if profile in comment.dislike.all %}
+              <i class="fas fa-thumbs-up deslike dislike-active"></i>
+            {% else %}
+              <i class="fas fa-thumbs-up deslike"></i>
+            {% endif %}
+            <span>({{comment.dislike.all|length}})</span>
+
+          </div>
+          <div class="right">
+            {% if comment.replys.all|length != 0 %}
+              <i class="fas fa-share" onclick=soon()></i>
+              <span>({{comment.replys.all|length}})</span>
+            {% else %}
+              <i class="fas fa-share" onclick=soon()></i><span>(0)</span>
+            <span data="{{comment.comments_id}}" class="hide comment-id-data"></span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+      
+    {% for comment in Comments %}
+      {% if comment.pin != True %}
+        <div class="box">
+          <div class="top">
+            <div class="cont">
+              <div class="head">
+                <div class="profile">
+                  <img src="{{comment.user.profile_picture.url}}" alt="" />
+                  <div class="cont">
+                    <div class="full-username">
+                      <span class="username">{{comment.user.username}}</span>
+                      <span class="tag">{{comment.user.tag}}</span>
+                    </div>
+                    <span class="dat-add">{{comment.added_date}}</span>
+                  </div>
+                </div>
+                <div class="body">
+                  <div class="cont">{{comment.comment}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="left">
+
+              {% if profile in comment.like.all %}
+                <i class="fas fa-thumbs-up like like-active"></i>
+                {% else %}
+                  <i class="fas fa-thumbs-up like"></i>
+              {% endif %}
+              <span>({{comment.like.all|length}})</span>
+              
+              {% if profile in comment.dislike.all %}
+                <i class="fas fa-thumbs-up deslike dislike-active"></i>
+              {% else %}
+                <i class="fas fa-thumbs-up deslike"></i>
+              {% endif %}
+              <span>({{comment.dislike.all|length}})</span>
+
+            </div>
+            <div class="right">
+              {% if comment.replys.all|length != 0 %}
+                <i class="fas fa-share" onclick=soon()></i>
+                <span>({{comment.replys.all|length}})</span>
+              {% else %}
+                <i class="fas fa-share" onclick=soon()></i><span>(0)</span>
+              <span data="{{comment.comments_id}}" class="hide comment-id-data"></span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="chat">
+      <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="تعليق" class="send-comment" />
+        <div class="hide">
+          <input type="text" name="comment-id" class="comment-id"/>
+          <input type="text" name="episode" value="{{this_ep.slug}}"/>
+          <input type="text" name="like" value="False" class="like_input" />
+          <input type="text" name="dislike" value="False" class="deslike_input" />
+          <input type="text" name="replys" value="False" />
+        </div>
+        <div class="re hide">
+          <span class="to">
+            <i class="fas fa-share"></i>
+            <img src="{{profile.profile_picture.url}}" alt="">
+            <span class="username">Abderrazzak</span>
+            <span class="tag">{{profile.tag}}</span>
+          </span>
+          <i class="fas fa-times"></i>
+        </div>
+        <input type="text" name="user-comment" placeholder="اظف تعليق .." />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

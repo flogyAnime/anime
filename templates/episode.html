@@ -1,0 +1,96 @@
+{% extends 'base/main.html' %} {% load static %} {% block content %}
+
+<div class="content">
+  <div class="title"><a href="/anime-list/{{this_anime.slug}}">{{this_episode.anime}}</a> الحلقة {{this_episode.number}}</div>
+  <div class="video">
+    <div class="full-screen" style="position: relative;">
+      <iframe
+        id='iframe_video_db'
+        src=""
+        frameborder="0"
+      >
+    </iframe>
+    <i class="fas fa-compress hide"></i>
+    </div>
+    <div class="control">
+      <div class="all-ep">
+        <i class="fas fa-expand"></i>
+        <a href=""id='download_this_ep'> download<i class="fas fa-cloud-download-alt"></i></a>
+      </div>
+      
+      <select name="watch" id="watch_db">
+
+        {% if this_episode.W_mega != '' %}
+          <option id='mega' value="mega" watch='{{this_episode.W_mega}}' download='{{this_episode.D_mega}}'>mega</option>
+        {% endif %}
+        
+        {% if this_episode.W_googledrive != '' %}
+          <option id='googledrive' value="googledrive" watch='{{this_episode.W_googledrive}}' download='{{this_episode.D_googledrive}}'>google drive</option>
+          {% endif %}
+          
+        {% if this_episode.W_mp4upload != '' %}
+          <option id='mp4upload' value="mp4upload" watch='{{this_episode.W_mp4upload}}' download='{{this_episode.D_mp4upload}}'>mp4upload</option>
+        {% endif %}
+          
+        {% if this_episode.W_solidfiles != '' %}
+          <option id='solidfiles' value="solidfiles" watch='{{this_episode.W_solidfiles}}' download='{{this_episode.D_solidfiles}}'>solidfiles</option>
+        {% endif %}
+          
+        {% if this_episode.W_4shared != '' %}
+          <option id='4shared' value="4shared" watch='{{this_episode.W_4shared}}' download = '{{this_episode.D_4shared}}'>4shared</option>
+        {% endif %}
+          
+      </select>
+    </div>
+  </div>
+  <div class="basic-info">
+    <div class="episodes">
+      <div class="searsh">
+        <span>حلقات الأنمي</span>
+        <input
+          id="epispdeNumber"
+          type="number"
+          placeholder="ابحث برقم الحلقة"
+        />
+      </div>
+      <div class="all">
+        {% for episode in this_episodes %}
+            {% url 'episode_app:episode' episode.slug as url %}
+            <a href="{{url}}">{{episode.number}}</a>
+        {% endfor %}
+        <span class="box-null null-ep hide" style="display: inline-block;">لم يتم العثور عى الحلقة</span>
+      </div>
+    </div>
+  </div>
+  <!-- recommended animes -->
+  <span class="secend">انميات مقترحة</span>
+  <div class="row">
+    {% for anime in recommended_animes.anime.all %}
+    {% url 'anime_info_app:anime_info' anime.slug as url %}
+    <a href="{{url}}" class="anime js-cut" title="{{anime.title}}">
+      <div class="anime-logo">
+        <img src="{{anime.image}}" alt="" />
+        <div class="episode"><span></span></div>
+      </div>
+      <div class="star">
+        {% if anime.rating == '' %}
+          <span>-/-</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length == 1 %}
+          <span>{{anime.rating}}.0</span><i class="fas fa-star"></i>
+        {% endif %}
+        {% if anime.rating|length > 1 and anime.rating != '' %}
+          <span>{{anime.rating}}</span><i class="fas fa-star"></i>
+        {% endif %}
+      </div>
+      <div class="reset"></div>
+      <div class="simple-info">
+        <span class="title tc-js" title="{{anime.title}}">{{anime.title}}</span
+        ><span class="type">{{anime.Type}}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

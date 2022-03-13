@@ -1,0 +1,18 @@
+.submit-disactive {
+  opacity: 0.6;
+  cursor: no-drop;
+}
+
+.input-error {
+  border-color: red !important;
+}
+
+.height_full {
+  height: 100vh !important;
+}
+
+@media (min-width: 900px) {
+  .hide-plus-12 {
+    display: none !important;
+  }
+}

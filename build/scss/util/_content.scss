@@ -1,0 +1,27 @@
+.content {
+  margin: auto;
+  margin-bottom: 10px;
+  background: #2a2c3169;
+  border-radius: 5px;
+}
+
+@media (min-width: 720px) {
+  .content {
+    width: 69%;
+    margin: 0px;
+  }
+}
+
+@media (max-width: 719px) {
+  .content {
+    max-width: 97%;
+    width: 97%;
+  }
+}
+
+// @media (min-width: 650px) and (max-width: 719px) {
+//   .content {
+//     max-width: 97%;
+//     width: 97%;
+//   }
+// }

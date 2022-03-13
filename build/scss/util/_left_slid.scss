@@ -1,0 +1,96 @@
+// left slid bar
+.left-slid {
+  display: none;
+  width: 29%;
+  margin-right: 1%;
+  // categorys
+  .categorys {
+    color: white;
+    background-color: #2a2c3169;
+    .title {
+      background: #292d33;
+      display: block;
+      padding: 10px 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .all {
+      margin: auto;
+      a {
+        text-decoration: none;
+        color: white;
+        display: inline-block;
+        padding: 10px;
+        background: #292d33;
+        width: calc(97% / 3);
+        text-align: center;
+        border-bottom: 3.5px solid #1d2228;
+        &:hover {
+          color: #faa300;
+        }
+      }
+    }
+  }
+  // .eft slid
+  .your-new {
+    color: white;
+    background-color: #2a2c3169;
+    margin-top: 15px;
+    > .title {
+      width: 100% !important;
+      display: flex;
+      justify-content: space-between;
+      background: #292d33;
+      padding: 5px;
+      border: 2px solid #1d2228;
+      padding: 10px 12px;
+      font-weight: bold;
+    }
+    .episode span {
+      background: #d98e08;
+      color: #1d2228;
+      font-size: 13px;
+      padding: 1px;
+      border-radius: 3px;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+    .anime {
+      text-decoration: none;
+      color: white;
+      width: 100% !important;
+      display: flex;
+      justify-content: space-between;
+      background: #292d33;
+      padding: 5px;
+      border: 2px solid #1d2228;
+      position: relative;
+      .title {
+        margin-right: 20px;
+        &::after {
+          content: "";
+          right: 5px;
+          display: block;
+          width: 10px;
+          height: 10px;
+          background: #f44336;
+          position: absolute;
+          top: 9px;
+          border-radius: 7px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .left-slid .categorys .all a {
+    width: calc(98% / 2) !important;
+  }
+}
+
+@media (min-width: 720px) {
+  .left-slid {
+    display: block !important;
+  }
+}

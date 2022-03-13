@@ -1,0 +1,200 @@
+.content {
+  min-height: 85vh;
+  .comments {
+    .box {
+      margin: auto;
+      // background: #14142473;
+      // background: #292d33;
+      background: #292d3396;
+      padding: 15px 20px 10px;
+      margin-top: 8px;
+      border-radius: 5px 5px;
+      width: calc(100% - 11px);
+      margin-bottom: 10px;
+      .top {
+        .cont {
+          .head {
+            .profile {
+              display: flex;
+              flex-direction: row-reverse;
+              align-items: center;
+              img {
+                width: 40px;
+                height: 40px;
+                border-radius: 7px;
+              }
+              .cont {
+                display: flex;
+                flex-direction: column;
+                .full-username {
+                  display: flex;
+                  flex-direction: row-reverse;
+                  .username {
+                    font-weight: bold;
+                    margin-left: 10px;
+                    font-size: 18px;
+                    color: white;
+                  }
+                  .tag {
+                    color: #9acd32;
+                    margin-left: 10px;
+                    font-size: 14px;
+                  }
+                }
+                .dat-add {
+                  direction: initial;
+                  margin-left: 10px;
+                  color: #dddddd96;
+                }
+              }
+            }
+            .body {
+              .cont {
+                direction: ltr;
+                margin-top: 11px;
+                color: #eeeeeef2;
+                background: #eeeeee08;
+                padding: 9px;
+                border-radius: 3px;
+              }
+            }
+          }
+        }
+      }
+      .bottom {
+        margin-top: 10px;
+        border-top: 1px solid #dddddd5c;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        .left {
+          direction: initial;
+          display: flex;
+          align-items: center;
+          .fa-thumbs-up {
+            font-size: 20px;
+            color: #ddddddf5;
+          }
+          .fa-thumbs-up ~ .fa-thumbs-up {
+            transform: rotate(180deg);
+            margin-left: 8px;
+          }
+          span {
+            color: #dddddd96;
+            margin-left: 3px;
+            font-size: 15px;
+          }
+          .like-active {
+            color: #f9a203;
+          }
+
+          .dislike-active {
+            color: #f12c2c;
+          }
+        }
+        .right {
+          display: flex;
+          .fa-share {
+            font-size: 20px;
+            color: #ddddddcc;
+            display: flex;
+            margin-left: 3px;
+          }
+          span {
+            color: #dddddd96;
+            margin-left: 3px;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    .chat {
+      direction: ltr;
+      margin-top: 40px;
+      background: rgb(41, 45, 51);
+      padding: 8px;
+      position: fixed;
+      bottom: 2px;
+    }
+    form {
+      input[type="text"] {
+        width: calc(100% - 69px);
+        padding: 8px;
+        outline: none;
+        background: #30343a;
+        border: none;
+        color: white;
+        border-radius: 3px;
+        direction: rtl;
+      }
+      input[type="submit"] {
+        width: 65px;
+        background: #d98e08d6;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        padding: 7.5px;
+      }
+      .re {
+        position: absolute;
+        top: -40px;
+        background: #141b22;
+        width: 100%;
+        color: white;
+        padding: 10px;
+        display: flex;
+        left: 0px;
+        justify-content: space-between;
+        align-items: center;
+        .to {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .fa-share {
+            font-size: 20px;
+            color: #ddddddcc;
+            margin-right: 8px;
+          }
+          img {
+            height: 25px;
+            width: 25px;
+            border-radius: 3px;
+          }
+          .username {
+            font-weight: 700;
+            margin-left: 8px;
+            font-size: 17px;
+            color: #fff;
+          }
+          .tag {
+            color: #9acd32;
+            margin-left: 5px;
+            margin-bottom: -10px;
+            font-size: 12px;
+          }
+        }
+        .fa-times {
+          font-size: 20px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+    .comments {
+    }
+  }
+}
+@media (min-width: 1400px) {
+  .comments {
+    .box {
+      width: calc(100% - 25px);
+    }
+  }
+}
+
+// main

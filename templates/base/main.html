@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% if google_site_verification %}
+      <meta name="{{google_site_verification.name}}" content="{{google_site_verification.content}}" />
+    {% endif %}
+    <meta name="description" content="{{description}}" />
+    <link rel="icon" type="image/png" href="{% static 'images/icon.png' %}"/>
+    <link rel="stylesheet" href="/static/css/normalize.css?{% now 'U' %}" />
+    <link rel="stylesheet" href="/static/css/all.min.css?{% now 'U' %}" />
+    {% for style in css %}
+      <link rel="stylesheet" href="/static/css/{{style}}?{% now 'U' %}" />
+    {% endfor %}
+    <title>{{title}}</title>
+  </head>
+
+  <body>
+    <!-- nav md< -->
+    <div class="bg-nav">
+      <nav>
+        <h1 class="seo">Anime Flogy</h1>
+        <h2 class="seo">انمي فلوجي</h2>
+        <div class="left">
+          <i class="fas fa-user-circle"></i>
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="center">
+          <a href="/" class="home_">الرئيسية</a>
+          <a href="/anime-list" class="anime_list_">قائمة الأنمي</a>
+          <a href="/anime-movies" class="movies_list_">أفلام الأنمي</a>
+          <a class="manga_" style="opacity: 0.6" onclick=soon()>المنجا</a>
+        </div>
+        <div class="right">
+          <img class="logo" src="{% static 'images/flogy_logo.png' %}" alt="logo" />
+        </div>
+        <div class="right-md-sm">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-window-close hide"></i>
+        </div>
+        <div class="menu hide">
+          {% if user_her %}
+            <div class="fav">
+              <a href="/profile/#favorite">المفضلة</a>
+            </div>
+            <div class="_center">
+              <a href="/profile/#watch-now">اشاهدها حاليا</a>
+              <a href="/profile/#want-watch">ارغب بمشاهدتها</a>
+              <a href="/profile/#watched">تمت مشاهدتها</a>
+            </div>
+            {% else %}
+              <div class="fav">
+                <a onclick=user_not_her()>المفضلة</a>
+              </div>
+              <div class="_center">
+                <a onclick=user_not_her()>اشاهدها حاليا</a>
+                <a onclick=user_not_her()>ارغب بمشاهدتها</a>
+                <a onclick=user_not_her()>تمت مشاهدتها</a>
+              </div>
+          {% endif %}
+          <div class="bottom">
+            {% if user_her == True %}
+              <span class="loginBt hide" >دخول</span>
+              <span class="slash hide"> | </span>
+              <span class="signupBt hide">تسجيل</span>
+              <a href="/profile/" class="thisusername">{{username}}</a>
+              <script>
+                var thisusername = document.querySelectorAll(".thisusername")[0]
+                  if (thisusername.innerText.length > 16) {
+                    thisusername.innerText = `${thisusername.innerText.substring(0, 14)}..`;
+                  }
+              </script>
+            {% else %}
+              <span class="loginBt" >دخول</span>
+              <span class="slash"> | </span>
+              <span class="signupBt">تسجيل</span>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- nav menu xsm<md -->
+    <div class="right-nav close-nav">
+      <div class="top">
+      {% if user_her %}
+        <a href="/profile/">
+      {% else %}
+        <a>
+      {% endif %}
+          <i class="fas fa-user-circle"></i>
+          {% if user_her %}
+            <span
+              >
+              <span class="a signupBt hide">تسجيل</span>
+              <span class="hide"> | </span>
+              <span class="a loginBt hide">دخول</span>
+              <span class="thisusername">{{username}}</span>
+              <script>
+                var thisusername = document.querySelectorAll(".thisusername")[1]
+                  if (thisusername.innerText.length > 16) {
+                    thisusername.innerText = `..${thisusername.innerText.substring(0, 15)}`;
+                  }
+              </script>
+            </span>
+          {% else %}
+            <span>
+              <span class="a signupBt">تسجيل</span>
+              <span> | </span>
+              <span class="a loginBt">دخول</span>
+            </span>
+          {% endif %}
+        </a>
+      </div>
+      <div class="center">
+        <a href="/" class="home_">الرئيسية</a>
+        <a href="/anime-list" class="anime_list_">قائمة الأنمي</a>
+        <a href="/anime-movies" class="movies_list_">أفلام الأنمي</a>
+        <a class="manga_" style="opacity: 0.6" onclick=soon()>المنجا</a>
+      </div>
+        {% if user_her %}
+          <div class="fav">
+            <a href="/profile/#favorite">المفضلة</a>
+          </div>
+          <div class="bottom">
+            <a href="/profile/#watch-now">اشاهدها حاليا</a>
+            <a href="/profile/#want-watch">ارغب بمشاهدتها</a>
+            <a href="/profile/#watched">تمت مشاهدتها</a>
+          </div>
+          {% else %}
+            <div class="fav">
+              <a onclick=user_not_her()>المفضلة</a>
+            </div>
+            <div class="bottom">
+              <a onclick=user_not_her()>اشاهدها حاليا</a>
+              <a onclick=user_not_her()>ارغب بمشاهدتها</a>
+              <a onclick=user_not_her()>تمت مشاهدتها</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- shearch -->
+    <div class="container relative">
+      <div class="shearch hide">
+        <form method="get">
+          <i class="fas fa-window-close"></i>
+          <input id="shearch" type="text" placeholder="ابحث عن انمي..." name="s"/>
+          <input type="submit" value="ابحث">
+        </form>
+      </div>
+    </div>
+
+    <!-- signup -->
+    <div class="register signup hide">
+      <form method="post">
+        {% csrf_token %}
+        <label>full name</label>
+        <input id="FullName" type="text" name="FullName"  class="jsname" required />
+        <label>email</label>
+        <input id="email_sign" type="email" name="email_sign" class="jsemail" required />
+        <label>password</label>
+        <input type="password_sign" name="password_sign" class="jspass" required />
+        <input type="submit" value="sign up" class="jssubmit" id="submit" />
+      </form>
+    </div>
+
+    <!-- login -->
+    <div class="register login hide">
+      <form method="post">
+        {% csrf_token %}
+        <label>email</label>
+        <input id="email_log" type="email" name="email_log" class="jsemail" required />
+        <label>password</label>
+        <input type="password_log" name="password_log" class="jspass" required />
+        <input type="submit" value="login" class="jssubmit" id="submit" />
+      </form>
+    </div>
+
+    <!-- <django block> -->
+    <div class="container full">
+      {% block content %}{% endblock content %}
+    <!-- </django block> -->
+
+      <!-- left slid-->
+      <div class="left-slid">
+        <div class="categorys">
+          <span class="title">تصنيفات:</span>
+          <div class="all">
+            {% for cat in categories %}
+              {% if cat.category != 'Shounen' %}
+                {% if cat == cat_by %}
+                  {% url 'categories_app:categories' cat.slug as url %}
+                  <a class="this" href="{{url}}">{{cat}}</a>
+                {% else %}
+                  {% url 'categories_app:categories' cat.slug as url %}
+                  <a href="{{url}}">{{cat}}</a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="your-new">
+          <span class="title">جديدك</span>
+          <div class="all">
+            {% if your_news|length != 0 %}
+              {% for news in your_news %}
+                {% for new_e in your_ep %}
+                  {% if new_e.anime.title == news.title%}
+                    {% url 'episode_app:episode' new_e.slug as url %}
+                      <a href="{{url}}" class="anime">
+                        <span class="title">{{news.title}}</span>
+                          <span class="episode">
+                            <span>حلقلة {{new_e.number}}</span>
+                          </span>
+                        </a>
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            {% else %}
+              <div class="anime">
+                <span class="box-null null-ep">القائمة فارغة</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- notifications from server -->
+    <div class="notifications">
+
+      {% if error_username %}  
+        <span class="red_notification this_notification">المرجو ادخال بيانات صحيحة</span>
+      {% endif %}
+
+      {% if wrong_password %}  
+        <span class="red_notification this_notification">كلمة السر خاطئة</span>
+      {% endif %}
+
+      {% if old_email %}  
+        <span class="red_notification this_notification">الاميل مرتبط بحساب شخص اخر</span>
+      {% endif %}
+
+      {% if new_user %}  
+        <span class="green_notification this_notification">تم انشاء حسابك بنجاح</span>
+      {% endif %}
+
+      {% if welcome_again %}  
+        <span class="blue_notification this_notification">استمتع بوقتك {{username}}</span>
+      {% endif %}
+
+      {% if not_authenticated %}  
+        <span class="red_notification this_notification">يرجى تسجيل الدخول اولا</span>
+      {% endif %}
+    </div>
+
+    <!-- normal notifications -->
+    <div class="normal-notifications">
+      <span class="blue_notification this_notification id-01 hide" style="padding-left: 20px;padding-right: 20px;">قريبا</span>
+      <span class="red_notification this_notification id-02 hide">يرجى تسجيل الدخول اولا</span>
+      <span class="red_notification this_notification id-03 hide">يرجى رفع الصورة اولا</span>
+    </div>
+
+    <script src="/static/js/main/main.js?{% now 'U' %}"></script>
+      {% for file in js %}
+        <script src="/static/js/{{file}}?{% now 'U' %}"></script>
+      {% endfor %}
+
+  </body>
+</html>
